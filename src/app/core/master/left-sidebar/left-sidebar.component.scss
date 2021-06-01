@@ -1,0 +1,12 @@
+.nav-link{
+  padding: 1em;
+  margin: 5px 0px;
+  background-color: rgb(204, 204, 204);
+}
+nav{
+  background-color: white;
+}
+.nav-link.active{
+
+  background-color: transparent;
+}
