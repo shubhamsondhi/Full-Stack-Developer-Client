@@ -1,20 +1,30 @@
-<nav class="d-none d-md-block sidebar">
+<nav class="d-none d-md-block sidebar mr-0 pr-0">
   <div class="sidebar-sticky">
     <ul class="nav flex-column">
-      <li class="nav-item" >
-        <a class="nav-link active show" href="#">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['employee/add']" routerLinkActive="active router-link-active">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="feather feather-home">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
           Dashboard
         </a>
       </li>
 
-      <li class="nav-item" *ngFor="let item of [1,2,3,4,5,6,7,8]">
-        <a class="nav-link" href="#">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-          Dashboard
+      <li class="nav-item" *ngFor="let employee of this.employeeResponse">
+
+        <a class="nav-link" [routerLink]="['employee', employee.id]" routerLinkActive="active router-link-active">
+          {{employee.fullname}}
+          <i class="fa fa-trash right" aria-hidden="true"></i> <br>
+          {{employee.role}}
+
         </a>
       </li>
 
     </ul>
   </div>
 </nav>
+
+

@@ -5,11 +5,14 @@ import { LeftSidebarComponent } from './master/left-sidebar/left-sidebar.compone
 import { HeaderComponent } from './master/header/header.component';
 import { FooterComponent } from './master/footer/footer.component';
 import { RouterModule } from '@angular/router';
-
+import { EmployeesServiceClient } from './services/employees-client.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [MasterComponent, LeftSidebarComponent, HeaderComponent, FooterComponent],
   imports: [CommonModule,
+    HttpClientModule,
   RouterModule],
-  exports:[MasterComponent]
+  exports:[MasterComponent],
+  providers:[EmployeesServiceClient]
 })
 export class CoreModule {}
