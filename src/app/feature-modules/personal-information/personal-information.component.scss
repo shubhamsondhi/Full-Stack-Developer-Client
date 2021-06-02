@@ -1,8 +1,14 @@
 .tab-content {
 
   background-color: white;
-  height: 80%;
+  height: 700px;
 
+
+
+}
+.required.col-form-label:after {
+  content:"*";
+  color:red;
 }
 
 form {

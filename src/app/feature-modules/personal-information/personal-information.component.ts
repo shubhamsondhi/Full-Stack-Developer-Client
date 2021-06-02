@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeeService } from 'src/app/core/services/employee.service';
 import { Employee } from 'src/app/core/services/employees-client.service';
@@ -41,7 +41,7 @@ export class PersonalInformationComponent implements OnInit {
   ngOnInit(): void {
     this.activeRoute.params.subscribe((params) => {
       console.log(params);
-      if (params['id']==='add') {
+      if (params['id'] === 'add') {
         this.employeeForm = this.initForm();
         return;
       }
@@ -57,12 +57,22 @@ export class PersonalInformationComponent implements OnInit {
       this.employeeService.employeeUpdated();
     });
   }
+
   save() {
+    if(this.employeeForm.invalid){
+      alert(`Please fill all the required fields.`);
+
+      return;
+    }
     const employee = new Employee();
     employee.init(this.employeeForm.value);
     this.employeeService.saveEmployee(employee).subscribe((val) => {
-      this.getEmployee();
-      console.log(val);
+      this.employeeService.employeeUpdated();
+      if (employee.id === 0) {
+        alert(`Employee name ${employee.fullName} has been added.`);
+      } else {
+        alert(`Employee name ${employee.fullName} has been updated.`);
+      }
     });
   }
   private initForm() {
@@ -72,11 +82,11 @@ export class PersonalInformationComponent implements OnInit {
       modified: '',
       firstName: '',
       lastName: '',
-      fullName: '',
+      fullName: ['',Validators.required],
       email: '',
       gender: '',
-      phoneNumber: '',
-      role: '',
+      phoneNumber: ['',Validators.required],
+      role: ['',Validators.required],
       address: '',
       isActive: true,
     });

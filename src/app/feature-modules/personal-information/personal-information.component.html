@@ -1,35 +1,59 @@
 <div class="tab-content m-3 p pt-5">
-    <form [formGroup]="employeeForm">
-      <div class="form-group row">
-        <label for="fullName" class="col-sm-3 col-form-label">Full Name</label>
-        <div class="col-sm-6">
-          <input type="text" formControlName="fullName" class="form-control">
+  <h4 class="row pl-5 pb-3 ml-5"><u>Personal Information</u></h4>
+  <form [formGroup]="employeeForm">
+    <div class="form-group row">
+
+      <label for="fullName" class="col-sm-3 col-form-label required">Full Name</label>
+      <div class="col-sm-6">
+        <input type="text" formControlName="fullName"
+          [ngClass]="{'is-invalid': (employeeForm.get('fullName')?.invalid && employeeForm.get('fullName')?.touched)}"
+          class="form-control">
+        <div class="invalid-feedback text-left">
+          Full Name is required.
         </div>
       </div>
-      <div class="form-group row">
-        <label for="address" class="col-sm-3 col-form-label">Address</label>
-        <div class="col-sm-6">
-          <input type="text" formControlName="address" class="form-control">
+    </div>
+    <div class="form-group row">
+      <label for="address" class="col-sm-3 col-form-label">Address</label>
+      <div class="col-sm-6">
+        <input type="text" formControlName="address" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="phoneNumber" class="col-sm-3 col-form-label required">Phone Number</label>
+      <div class="col-sm-6">
+        <input type="text" formControlName="phoneNumber" class="form-control "
+          [ngClass]="{'is-invalid': (employeeForm.get('phoneNumber')?.invalid && employeeForm.get('phoneNumber')?.touched)}">
+        <div class="invalid-feedback text-left">
+          Phone Number is required.
         </div>
       </div>
-      <div class="form-group row">
-        <label for="phoneNumber" class="col-sm-3 col-form-label">Phone Number</label>
-        <div class="col-sm-6">
-          <input type="text" formControlName="phoneNumber" class="form-control">
+    </div>
+    <div class="form-group row">
+      <label for="position" class="col-sm-3 col-form-label required">Position</label>
+      <div class="col-sm-6">
+        <select class="form-control" formControlName="role"
+          [ngClass]="{'is-invalid': (employeeForm.get('role')?.invalid && employeeForm.get('role')?.touched)}">
+          <option value="">--Select--</option>
+          }
+          <option *ngFor="let role of rolesDD" [value]="role">{{role}}</option>
+        </select>
+        <div class="invalid-feedback text-left">
+          Position is required.
         </div>
       </div>
-      <div class="form-group row">
-        <label for="position" class="col-sm-3 col-form-label">Position</label>
-        <div class="col-sm-6">
-          <select class="form-control" formControlName="role">
-            <option>--Select--</option>
-            }
-            <option *ngFor="let role of rolesDD" [value]="role">{{role}}</option>
-          </select>
-        </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-7">
+
       </div>
-      <button (click)="save()">Save</button>
-    </form>
+      <div class="col-3">
+        <button class="ml-3 btn btn-light" (click)="save()">Save</button>
+
+      </div>
+
+    </div>
+  </form>
 
 
 </div>

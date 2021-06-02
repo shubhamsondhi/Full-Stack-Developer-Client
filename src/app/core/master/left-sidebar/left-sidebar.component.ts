@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
-import { EmployeeResponse } from '../../services/employees-client.service';
+import { Employee, EmployeeResponse } from '../../services/employees-client.service';
 
 @Component({
   selector: 'app-left-sidebar',
@@ -15,13 +15,17 @@ export class LeftSidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.employeeService.isEmployeesUpdated.subscribe((val) =>
-
       this.getAllEmployees()
     );
   }
+  deleteEmployee(employee: EmployeeResponse) {
+    this.employeeService.deleteEmployee(employee.id??0).subscribe((val) => {
+      alert(`Employee name ${employee.fullname} has been removed.`);
+      this.getAllEmployees();
+    });
+  }
 
   getAllEmployees() {
-    console.log('c');
     this.employeeService
       .getEmployees()
       .subscribe((val) => (this.employeeResponse = val));
